@@ -274,3 +274,121 @@ find / -perm -4000 -o -perm -2000 2>/dev/null | sort
 ```
 
 ---
+## 🎯 DESAFIOS PRÁTICOS
+
+### Desafio 1: Análise de Log de Acesso (Fácil)
+**Arquivo**: `access.log` (formato Apache)
+```
+192.168.1.100 - - [25/Dec/2023:10:00:01 +0000] "GET /index.html HTTP/1.1" 200 1234
+192.168.1.101 - - [25/Dec/2023:10:00:02 +0000] "POST /login.php HTTP/1.1" 401 0
+192.168.1.100 - - [25/Dec/2023:10:00:03 +0000] "GET /admin.php HTTP/1.1" 403 567
+```
+
+**Tarefas**:
+1. Extrair apenas os IPs únicos
+2. Contar quantas vezes cada IP aparece
+3. Listar apenas requisições com erro (4xx, 5xx)
+4. Mostrar as 5 páginas mais acessadas
+
+**Solução esperada**:
+```bash
+# 1. IPs únicos
+awk '{print $1}' access.log | sort | uniq
+
+# 2. Contagem por IP
+awk '{print $1}' access.log | sort | uniq -c | sort -nr
+
+# 3. Requisições com erro
+awk '$9 ~ /^[45]/' access.log
+
+# 4. Top 5 páginas
+awk '{print $7}' access.log | sort | uniq -c | sort -nr | head -5
+```
+
+---
+
+### Desafio 2: Limpeza de Lista de Senhas (Fácil)
+**Arquivo**: `passwords.txt` (lista de senhas com duplicatas e espaços)
+```
+admin123
+password  
+ADMIN123
+password
+ secret 
+Password
+admin123
+```
+
+**Tarefas**:
+1. Remover duplicatas (case-insensitive)
+2. Remover espaços em branco no início e fim
+3. Converter tudo para minúsculas
+4. Mostrar apenas senhas com mais de 6 caracteres
+
+**Solução esperada**:
+```bash
+# Limpar e filtrar senhas
+cat passwords.txt | sed 's/^[ \t]*//;s/[ \t]*$//' | tr '[:upper:]' '[:lower:]' | sort | uniq | awk 'length($0) > 6'
+```
+
+---
+
+### Desafio 3: Análise de Usuários do Sistema (Médio)
+**Arquivo**: `/etc/passwd`
+
+**Tarefas**:
+1. Listar usuários com UID >= 1000 (usuários normais)
+2. Mostrar apenas username e shell padrão
+3. Contar quantos usuários usam bash vs outras shells
+
+
+**Solução esperada**:
+```bash
+# 1. Usuários normais (UID >= 1000)
+awk -F: '$3 >= 1000 {print $1, $3}' /etc/passwd
+
+# 2. Username e shell
+awk -F: '$3 >= 1000 {print $1, $7}' /etc/passwd
+
+# 3. Contagem por shell
+awk -F: '{print $7}' /etc/passwd | sort | uniq -c | sort -nr
+
+
+```
+
+---
+
+### Desafio 4: Busca de Configurações Sensíveis (Médio)
+**Tarefa**: Encontrar arquivos de configuração que podem conter informações sensíveis
+
+**Objetivos**:
+1. Buscar todos os arquivos `.conf` e `.cfg` em `/etc`
+2. Procurar por linhas contendo "password", "secret", "key" (case-insensitive)
+
+
+**Solução esperada**:
+```bash
+find /etc -name "*.conf" -o -name "*.cfg" | \
+xargs grep -i -E "(password|secret|key)" | \
+grep -v -E "^\s*[#;]" | \
+grep -v "^#"
+```
+
+---
+
+### Dicas
+- **Sempre redirecione stderr**: `comando 2>/dev/null`
+- **Use aliases para comandos complexos**: `alias logips="awk '{print \$1}' | sort | uniq -c | sort -nr"`
+- **Combine ferramentas em scripts**: Crie scripts reutilizáveis para análises comuns
+- **Mantenha one-liners úteis**: Documente comandos que funcionam bem
+
+
+## ✅ Checklist de Avaliação
+
+### Aluno deve demonstrar capacidade de:
+- [ ] Usar grep com regex para buscar padrões em logs
+- [ ] Extrair e processar dados com awk
+- [ ] Manipular texto com sed
+- [ ] Combinar ferramentas em pipelines eficientes
+- [ ] Usar xargs para processamento em lote
+- [ ] Otimizar comandos para performance

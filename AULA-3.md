@@ -389,3 +389,172 @@ find /etc -name "*.conf" -o -name "*.cfg" | xargs grep -i -E "(password|secret|k
 - [ ] Combinar ferramentas em pipelines eficientes
 - [ ] Usar xargs para processamento em lote
 - [ ] Otimizar comandos para performance
+
+
+####################################################################################################################
+
+
+## 🎯 TAREFAS PRÁTICAS PROGRESSIVAS
+
+### Tarefa 1: Primeira Análise de Log Web (GREP + SORT + UNIQ)
+**Objetivo**: Aprender o básico analisando um log de servidor web simples
+
+**Criar o arquivo** `web.log`:
+```bash
+cat > web.log << 'EOF'
+192.168.1.10 GET /index.html 200
+192.168.1.15 POST /login.php 401
+192.168.1.10 GET /admin.php 403
+192.168.1.20 GET /index.html 200
+192.168.1.15 POST /login.php 401
+192.168.1.25 GET /contact.php 200
+192.168.1.15 POST /login.php 200
+EOF
+```
+
+**O que fazer**:
+1. Mostrar apenas tentativas de login que falharam (código 401)
+2. Listar todos os IPs únicos que acessaram o site
+3. Contar quantas vezes cada página foi acessada
+4. Mostrar o IP que mais tentou fazer login
+
+**Comandos para usar**: `grep`, `sort`, `uniq`, `awk`
+
+---
+
+### Tarefa 2: Organizando Lista de Usuários (CUT + TR + SED)
+**Objetivo**: Limpar e organizar dados de usuários
+
+**Criar o arquivo** `users.txt`:
+```bash
+cat > users.txt << 'EOF'
+ADMIN:João Silva:admin@empresa.com
+user:maria santos:maria@empresa.com
+GUEST:Pedro Lima:pedro@empresa.com
+admin:João Silva:admin@empresa.com
+USER:Ana Costa:ana@empresa.com
+EOF
+```
+
+**O que fazer**:
+1. Converter todos os tipos de usuário para minúsculas (primeira coluna)
+2. Extrair apenas os nomes (segunda coluna)
+3. Remover usuários duplicados
+4. Substituir espaços nos nomes por "_"
+**Comandos para usar**: `cut`, `tr`, `sed`, `sort`, `uniq`
+
+---
+
+### Tarefa 3: Analisando Tentativas de Login SSH (AWK Básico)
+**Objetivo**: Usar AWK para análise simples de logs de autenticação
+
+**Criar o arquivo** `ssh.log`:
+```bash
+cat > ssh.log << 'EOF'
+Dec 15 08:30:15 server sshd: Failed password for root from 192.168.1.100
+Dec 15 08:30:20 server sshd: Accepted password for admin from 192.168.1.50
+Dec 15 08:30:25 server sshd: Failed password for admin from 192.168.1.100
+Dec 15 08:30:30 server sshd: Failed password for root from 192.168.1.101
+Dec 15 08:30:35 server sshd: Accepted password for user from 192.168.1.60
+EOF
+```
+
+**O que fazer**:
+1. Mostrar apenas os logins que falharam
+2. Extrair os IPs que tentaram fazer login sem sucesso
+3. Contar quantas tentativas de login teve cada usuário
+4. Listar apenas tentativas de login como root
+
+**Comandos para usar**: `awk`, `grep`
+
+---
+
+### Tarefa 4: Processando Scan de Portas (SED + AWK Intermediário)
+**Objetivo**: Processar output de ferramenta de scan
+
+**Criar o arquivo** `portscan.txt`:
+```bash
+cat > portscan.txt << 'EOF'
+Host: 192.168.1.10
+Port 22: OPEN (ssh)
+Port 80: OPEN (http)
+Port 443: CLOSED
+Port 3306: OPEN (mysql)
+
+Host: 192.168.1.20
+Port 22: OPEN (ssh)
+Port 80: CLOSED
+Port 443: OPEN (https)
+Port 21: OPEN (ftp)
+EOF
+```
+
+**O que fazer**:
+1. Mostrar apenas as portas abertas (OPEN)
+2. Para cada host, listar só IP e portas abertas
+3. Contar quantos serviços SSH foram encontrados
+
+
+**Comandos para usar**: `sed`, `awk`, `grep`
+
+---
+
+### Tarefa 5: Buscando Configurações em Múltiplos Arquivos (FIND + XARGS)
+**Objetivo**: Usar find e xargs para buscar em vários arquivos
+
+**Preparar ambiente**:
+```bash
+mkdir -p configs/{web,db,mail}
+echo "database_password=secret123" > configs/db/mysql.conf
+echo "admin_user=root" > configs/web/apache.conf
+echo "# password_hash=abc123" > configs/web/users.conf
+echo "smtp_password=mail456" > configs/mail/postfix.conf
+echo "backup_key=backup789" > configs/db/backup.conf
+```
+
+**O que fazer**:
+1. Encontrar todos os arquivos `.conf` dentro de `configs/`
+2. Buscar por linhas que contenham "password" ou "key" nesses arquivos
+
+
+**Comandos para usar**: `find`, `xargs`, `grep`
+
+---
+
+### Tarefa 6: Relatório de Segurança Simples (COMBINANDO TUDO)
+**Objetivo**: Combinar todas as ferramentas para criar um relatório
+
+**Criar o ambiente**:
+```bash
+cat > security.log << 'EOF'
+2023-12-15 10:15:22 ALERT: Multiple login failures from 10.0.0.5
+2023-12-15 10:16:45 INFO: User admin logged in successfully
+2023-12-15 10:17:30 ALERT: Suspicious file access /etc/passwd by user guest
+2023-12-15 10:18:15 ERROR: Permission denied for user guest on /etc/shadow
+2023-12-15 10:19:20 ALERT: Multiple login failures from 10.0.0.5
+2023-12-15 10:20:30 WARNING: High CPU usage detected
+2023-12-15 10:21:45 ALERT: Port scan detected from 10.0.0.8
+EOF
+```
+
+**O que fazer**:
+1. Separar apenas os alertas de segurança (ALERT)
+2. Extrair os IPs mencionados nos alertas
+3. Contar quantos tipos diferentes de evento temos (ALERT, INFO, ERROR, WARNING)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

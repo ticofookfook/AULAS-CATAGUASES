@@ -368,10 +368,7 @@ awk -F: '{print $7}' /etc/passwd | sort | uniq -c | sort -nr
 
 **Solução esperada**:
 ```bash
-find /etc -name "*.conf" -o -name "*.cfg" | \
-xargs grep -i -E "(password|secret|key)" | \
-grep -v -E "^\s*[#;]" | \
-grep -v "^#"
+find /etc -name "*.conf" -o -name "*.cfg" | xargs grep -i -E "(password|secret|key)" | grep -v -E "^\s*[#;]" | grep -v "^#"
 ```
 
 ---

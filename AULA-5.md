@@ -67,3 +67,103 @@ Criar um script com menu que permita:
 - Sair do programa
 
 
+########################################
+
+
+### 21 - FTP
+```bash
+ftp <target>
+
+```bash
+ssh <user>@<target>
+
+```bash
+telnet <target> 23
+```
+### 25/587 - SMTP
+```bash
+nc <target> 25
+```
+### 53 - DNS
+```bash
+dig @<target> axfr <domain>
+dnsrecon -d <domain> -t axfr
+```
+### 80/443 - HTTP/HTTPS
+```bash
+gobuster dir -u http://<target> -w /usr/share/seclists/Discovery/Web-Content/common.txt
+nikto -h http://<target>
+```
+### 110/995 - POP3
+```bash
+nc <target> 110
+USER <username>
+PASS <password>
+```
+
+### 135/445 - SMB (Windows)
+```bash
+smbclient -L //<target>/
+smbmap -H <target>
+enum4linux <target>
+```
+### 139/445 - NetBIOS
+```bash
+nbtscan <target>
+smbclient -L //<target>/ -N
+```
+### 993/143 - IMAP
+```bash
+nc <target> 143
+LOGIN <user> <pass>
+```
+
+### 1521 - Oracle
+```bash
+sqlplus <user>/<password>@<target>:1521/XE
+```
+
+### 2049 - NFS
+```bash
+showmount -e <target>
+mount -t nfs <target>:/path /mnt/nfs
+```
+
+### 3306 - MySQL
+```bash
+mysql -h <target> -u root -p
+```
+
+### 3389 - RDP
+```bash
+rdesktop <target>
+xfreerdp /v:<target> /u:<user> /p:<password>
+```
+
+### 5432 - PostgreSQL
+```bash
+psql -h <target> -U postgres
+```
+
+### 5985/5986 - WinRM
+```bash
+evil-winrm -i <target> -u <user> -p <password>
+```
+
+### 6379 - Redis
+```bash
+redis-cli -h <target>
+info
+keys *
+```
+
+### 11211 - Memcached
+```bash
+nc <target> 11211
+stats
+```
+
+### Enum Web Rápido
+```bash
+for port in 80 443 8080 8000 8443; do curl -s http://<target>:$port | head -20; done
+```

@@ -48,7 +48,6 @@ nslookup google.com
 ```cmd
 ipconfig /flushdns
 ipconfig /release
-ipconfig /renew
 ```
 
 **Questão:** Se `ping google.com` falhar mas `ping 8.8.8.8` funcionar, qual é o problema?

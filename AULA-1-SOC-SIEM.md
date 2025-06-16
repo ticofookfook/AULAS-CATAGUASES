@@ -46,7 +46,7 @@ Analisar um CVE específico (ex: CVE-2021-44228 - Log4Shell):
 2. Entender o vetor de ataque
 3. Avaliar o impacto
 4. Verificar exploits disponíveis
-
+5. Montar relatório
 ---
 
 ## Aula 1.2: Arquitetura de Monitoramento

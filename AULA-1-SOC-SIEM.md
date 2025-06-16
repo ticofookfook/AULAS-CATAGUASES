@@ -86,7 +86,7 @@ Analisar um CVE específico (ex: CVE-2021-44228 - Log4Shell):
 - **Exemplos**: CrowdStrike, SentinelOne, Microsoft Defender
 - **Capacidades**: Multi-vector detection, automated response
 
-#### Indicadores de Compromisso (IoCs)
+#### Indicadores de Compromisso (IoCs)(Indicadores de Comprometimento)
 - **Hash de arquivos**: MD5, SHA1, SHA256
 - **Endereços IP**: IPs maliciosos, C&C servers
 - **Domínios**: Domínios suspeitos, DGA domains
@@ -102,7 +102,7 @@ Analisar um CVE específico (ex: CVE-2021-44228 - Log4Shell):
 - **Any.run**: https://any.run/
 - **URLVoid**: https://www.urlvoid.com/
 
-#### IOC Feeds
+#### IOC(Indicadores de Comprometimento) Feeds
 - **Abuse.ch**: https://abuse.ch/
 - **EmergingThreats**: https://rules.emergingthreats.net/
 - **Malware Domain List**: https://www.malwaredomainlist.com/
@@ -112,7 +112,7 @@ Analisar um CVE específico (ex: CVE-2021-44228 - Log4Shell):
 Análise de um sample malware no Hybrid Analysis:
 1. Submeter hash conhecido
 2. Analisar comportamento
-3. Extrair IOCs
+3. Extrair IOCs(Indicadores de Comprometimento)
 4. Identificar TTPs do MITRE ATT&CK
 
 ---

@@ -37,6 +37,9 @@
 - **IBM X-Force**: https://exchange.xforce.ibmcloud.com/
 - **VirusTotal**: https://www.virustotal.com/
 
+#### Ataque reconhecimento
+-**Ataque passo a passo** https://thedfirreport.com/
+
 ### Exercício Prático
 Analisar um CVE específico (ex: CVE-2021-44228 - Log4Shell):
 1. Identificar a vulnerabilidade

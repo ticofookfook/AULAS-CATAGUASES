@@ -157,7 +157,7 @@ Análise de um sample malware no Hybrid Analysis:
 #### Configurações de Rede
 - **Management**: 192.168.1.0/24
 - **Internal**: 192.168.10.0/24
-- **DMZ**: 192.168.100.0/24
+- **DMZ**: 192.168.25.0/24
 
 
 ---

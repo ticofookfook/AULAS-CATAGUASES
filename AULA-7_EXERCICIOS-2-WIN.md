@@ -65,7 +65,7 @@ sudo bash wazuh-install.sh -a
 
 ---
 
-## Aula 2.2: Agentes e Coleta de Logs (1h)
+## Aula 2.2: Agentes e Coleta de Logs
 
 ### Teoria: Agentes Wazuh
 
@@ -123,7 +123,7 @@ sudo bash wazuh-install.sh -a
 </ossec_config>
 ```
 
-### File Integrity Monitoring (FIM)
+### File Integrity Monitoring
 
 #### Configuração FIM
 ```xml
@@ -166,7 +166,7 @@ sudo bash wazuh-install.sh -a
 
 ---
 
-## Aula 2.3: Detecção de Ameaças (1h)
+## Aula 2.3: Detecção de Ameaças
 
 ### Teoria: Regras e Detecção
 
@@ -255,7 +255,7 @@ sudo bash wazuh-install.sh -a
 
 ---
 
-## Aula 2.4: Análise de Incidentes (1h)
+## Aula 2.4: Análise de Incidentes
 
 ### Teoria: Investigação de Alertas
 
